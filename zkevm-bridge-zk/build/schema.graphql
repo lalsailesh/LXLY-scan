@@ -1,0 +1,32 @@
+type BridgeEvent @entity(immutable: true) {
+  id: Bytes!
+  leafType: BigInt!
+  originNetwork: BigInt!
+  originAddress: Bytes!
+  destinationNetwork: BigInt!
+  destinationAddress: Bytes!
+  amount: BigInt!
+  metadata: Bytes!
+  depositCount: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  gasLimit: BigInt!
+  from: Bytes!
+  network: String!
+}
+
+type ClaimEvent @entity(immutable: true) {
+  id: Bytes!
+  index: BigInt!
+  originNetwork: BigInt!
+  destinationAddress: Bytes!
+  amount: BigInt!
+  transactionHash: Bytes
+  blockNumber: BigInt
+  gasLimit: BigInt
+  from: Bytes
+  to: Bytes
+  blockTimestamp: BigInt!
+  network: String!
+}

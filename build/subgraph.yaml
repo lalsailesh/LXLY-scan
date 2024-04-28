@@ -1,0 +1,27 @@
+specVersion: 0.0.5
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: PolygonZkEVMBridge
+    network: goerli
+    source:
+      address: "0xF6BEEeBB578e214CA9E23B0e9683454Ff88Ed2A7"
+      abi: PolygonZkEVMBridge
+      startBlock: 8792995
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - BridgeEvent
+        - ClaimEvent
+      abis:
+        - name: PolygonZkEVMBridge
+          file: PolygonZkEVMBridge\abis\PolygonZkEVMBridge.json
+      eventHandlers:
+        - event: BridgeEvent(uint8,uint32,address,uint32,address,uint256,bytes,uint32)
+          handler: handleBridgeEvent
+        - event: ClaimEvent(uint32,uint32,address,address,uint256)
+          handler: handleClaimEvent
+      file: PolygonZkEVMBridge\PolygonZkEVMBridge.wasm

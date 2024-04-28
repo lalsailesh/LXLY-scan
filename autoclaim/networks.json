@@ -1,0 +1,8 @@
+{
+  "goerli": {
+    "AutoClaim": {
+      "address": "0x05f2F7CaD85De6a53A0480515fe29789065682AA",
+      "startBlock": 10115310
+    }
+  }
+}

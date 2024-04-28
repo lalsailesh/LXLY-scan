@@ -1,0 +1,54 @@
+specVersion: 0.0.5
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: AutoClaim
+    network: goerli
+    source:
+      address: "0x05f2F7CaD85De6a53A0480515fe29789065682AA"
+      abi: AutoClaim
+      startBlock: 10115310
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AutoClaimed
+        - EIP712DomainChanged
+        - MessageProcessedTo
+        - MessageQueued
+        - MetaTxDecoded
+        - NewRegister
+        - NotReady
+        - OwnershipTransferred
+        - RoleAdminChanged
+        - RoleGranted
+        - RoleRevoked
+      abis:
+        - name: AutoClaim
+          file: AutoClaim/abis/AutoClaim.json
+      eventHandlers:
+        - event: AutoClaimed(uint256,string,uint256)
+          handler: handleAutoClaimed
+        - event: EIP712DomainChanged()
+          handler: handleEIP712DomainChanged
+        - event: MessageProcessedTo(uint256)
+          handler: handleMessageProcessedTo
+        - event: MessageQueued(uint256,bytes)
+          handler: handleMessageQueued
+        - event: MetaTxDecoded()
+          handler: handleMetaTxDecoded
+        - event: NewRegister(address,uint256)
+          handler: handleNewRegister
+        - event: NotReady(uint256)
+          handler: handleNotReady
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+          handler: handleRoleAdminChanged
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+      file: AutoClaim/AutoClaim.wasm
